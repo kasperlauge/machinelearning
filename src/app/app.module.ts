@@ -10,13 +10,15 @@ import { InputComponent } from './input/input.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OriginalchatComponent,
     TranslatechatComponent,
-    InputComponent
+    InputComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
