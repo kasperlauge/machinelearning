@@ -20,4 +20,4 @@ before_install:
 before_script:
 - npm install
 
-script: ng test
+script: karma start karma.conf.js --single-run
