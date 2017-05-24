@@ -1,15 +1,26 @@
 dist: trusty
 sudo: required
+language: node_js
+node_js:
+  - '6.10'
 
 addons:
-  sonarqube:
-    organization: "your_organization_key"
-    token:
-      secure: "your_token_encrypted_with_travis_encrypt_tool"
-jdk:
-  - oraclejdk8
-script:
-  - sonar-scanner
-cache:
-  directories:
-    - '$HOME/.sonar/cache'
+apt:
+  sources:
+    - google-chrome
+  packages:
+    - google-chrome-stable
+    - google-chrome-beta
+
+before_install:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+before_script:
+- npm install -g angular-cli
+- npm install -g karma
+- npm install
+- ng build
+
+script: karma start config/karma.conf.js --single-run
