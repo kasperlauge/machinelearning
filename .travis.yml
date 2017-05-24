@@ -5,6 +5,12 @@ node_js:
   - '6.10'
 
 addons:
+sonarqube:
+    organization: "abcde"
+    token:
+      secure: "TzN85Xe4vi+th1hp72Kr9PAO89OC7gLW7TB1KPfc35WQV+fjVNeKoAjXH32SlXW2kHBxGi6Fz1N0VB5oAd/H/F1Qxr7g/90AEJ8wTNa2kki2Bk7VXwkQ16fwShrS40MxMntjI0okIZql86I6OoTq9j+Uhwia0eNuMoA3lmgHQogud9rZNpYNuSjoA44uCMy7fwpjbAsapo00oMBLjFOFm4PA3HzH0wjf4z9CYRfCM06Wx0m/z7BjgS5TaF7oNgbjQu+NCji/7QJEup3R4YLmL0kzXSw5plPhrok074csIZARJ5I2HZFgVt5J9qyH83Jwny1VAG5FM9AryZ6n6XZuV8lV4o7xUBVoH1Y1TxzAh1TbOfdTYze3ERu1HtXkhRPqbIeJDDBeFMX/40Fg5cr3wqbiKX4ijwsmRTvtqIAtOSA75Q6G8zgmS62bhI4G6yf1f0v5LOtf38Z7TpeZMUiBQrLMCc9OrwO7IAIfiWXqevmZUO+QvodCfyroqO2A3sGqADKreCavVj9nk8vk3FUIVhZ4K3CJqqXJNtmh1rBQdtqu8wAcRzW9xG48VZ71Fq3RLJGE4QaJG7ShAy4BGAl0LaAVxYCrdzGcXbLzJwrn1dQvxkPD0Ys2+JRKdBt2j+8I4EuqBUfhkJxuiVFOregM5HRGkS3nuLkpLonK+C0NxAw="
+jdk:
+  - oraclejdk8
 apt:
   sources:
     - google-chrome
@@ -18,6 +24,12 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 before_script:
-- npm install
+  - npm install
 
-script: ng test --single-run
+script:
+  - sonar-scanner
+  - ng test --single-run
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
