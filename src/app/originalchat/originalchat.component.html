@@ -1,0 +1,7 @@
+<table class="fixed-height">
+  <td>
+    <tr *ngFor="let text of rawText | async">
+      {{text.$value}}
+    </tr>
+  </td>
+</table>
